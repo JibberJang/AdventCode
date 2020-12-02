@@ -12,21 +12,48 @@ namespace AdventCode
         {
             var input = new InputSetup().ReturnInput();
 
+            var solutionFound = false;
+
             foreach(var number in input)
             {
                 var matchingNumber = input.FirstOrDefault(x => x + number == 2020);
 
                 if (matchingNumber > 0)
                 {
+                    Console.WriteLine("Day 1 solution:");
                     Console.WriteLine("Match found:");
                     Console.WriteLine(matchingNumber);
                     Console.WriteLine(number);
                     Console.WriteLine("Multiplied: " + matchingNumber * number);
-                    return;
+                    solutionFound = true;
+
+                    break;
                 }
             }
 
-            
+            solutionFound = false;
+            foreach (var number in input)
+            {
+                if (solutionFound)
+                    break;
+
+                foreach(var secondNumber in input)
+                {
+                    var matchingNumber = input.FirstOrDefault(x => x + secondNumber + number == 2020);
+
+                    if (matchingNumber > 0)
+                    {
+                        Console.WriteLine("Day 2 solution:");
+                        Console.WriteLine("Match found:");
+                        Console.WriteLine(matchingNumber);
+                        Console.WriteLine(number);
+                        Console.WriteLine(secondNumber);
+                        Console.WriteLine("Multiplied: " + matchingNumber * number * secondNumber);
+                        solutionFound = true;
+                        break;
+                    }
+                }
+            }
         }
     }
 
